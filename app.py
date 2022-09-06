@@ -21,8 +21,11 @@ def respond():
 def home():
     URL = "https://realpython.github.io/fake-jobs/"
     page = requests.get(URL)
-    print(page, file=sys.stderr)
-    return redirect('/')
+    return jsonify({
+            "Message": f"Welcome {page} to our awesome API!",
+            # Add this option to distinct the POST request
+            "METHOD": "POST"
+        })
     #soup = BeautifulSoup(page.content, "html.parser")
     # # #print(soup)
     # # # Return the response in json format
