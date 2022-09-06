@@ -31,8 +31,9 @@ def home():
 
         a.append(each_div) 
 
+    data = {'address': a}
 
-    return a
+    return json.dumps(data)
     #soup = BeautifulSoup(page.content, "html.parser")
     # # #print(soup)
     # # # Return the response in json format
