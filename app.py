@@ -10,8 +10,16 @@ from bs4 import BeautifulSoup
 
 app = Flask(__name__)
 
-
 @app.route('/', methods=['GET'])
+def respond():
+    
+    URL = "https://realpython.github.io/fake-jobs/"
+  
+    #print(soup)
+    # Return the response in json format
+    print URL
+    
+@app.route('/check', methods=['GET'])
 def respond():
     
     URL = "https://realpython.github.io/fake-jobs/"
@@ -19,7 +27,7 @@ def respond():
     soup = BeautifulSoup(page.content, "html.parser")
     #print(soup)
     # Return the response in json format
-    return page
+    print page
 
 
 @app.route('/post/', methods=['POST'])
