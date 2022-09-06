@@ -26,18 +26,18 @@ def home():
     r = requests.get("https://thedarkestblog.com/", headers=headers)
     c = r.content
     soup = BeautifulSoup(r.content, "html.parser")
-    a=[]
+    data=[]
     for each_div in soup.findAll('h1',{'class':'entry-title'}):
-        a.append(each_div.text.replace(" ", "-").lower()) 
-    print(a)
-    return(a)
-    #soup = BeautifulSoup(page.content, "html.parser")
-    # # #print(soup)
-    # # # Return the response in json format
-    # # print(page)
+        data.append({"title":each_div.text}) 
+        for link in each_div.findAll('a'):
+            slugs=link.get('href')
+            data.append({"slug":slugs}) 
+            rnew = requests.get(slugs, headers=headers)
+            soup1 = BeautifulSoup(rnew.content, "html.parser")
+            gdp_table = soup1.find("div", attrs={"class": "entry-content"})
+            data.append({"desc":gdp_table})
+    return(data)
    
-
-
 @app.route('/post/', methods=['POST'])
 def post_something():
     param = request.form.get('name')
