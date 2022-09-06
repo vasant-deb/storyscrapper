@@ -30,11 +30,9 @@ def home():
     a=[]
     for each_div in soup.findAll('h1',{'class':'entry-title'}):
 
-        a.append(each_div) 
-
-    data = {'address': a}
-
-    return json.dumps(data)
+        a.append(each_div)
+    json_format = json.dumps(a)
+    return json_format
     #soup = BeautifulSoup(page.content, "html.parser")
     # # #print(soup)
     # # # Return the response in json format
