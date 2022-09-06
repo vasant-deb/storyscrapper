@@ -32,7 +32,7 @@ def home():
 
         a.append(each_div)
     json_format = json.dumps(a)
-    return json_format
+    return render_template('index.html')
     #soup = BeautifulSoup(page.content, "html.parser")
     # # #print(soup)
     # # # Return the response in json format
