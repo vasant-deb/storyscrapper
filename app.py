@@ -2,20 +2,9 @@ from flask import Flask, render_template, request
 
 from flask import jsonify
 
-
 import requests
 from bs4 import BeautifulSoup
 
-from flask_mysqldb import MySQL
-
-from urllib.request import urlopen
-  
-# import json
-import json
-# store the URL in url as 
-# parameter for urlopen
-import datetime
-import random 
 
 
 
