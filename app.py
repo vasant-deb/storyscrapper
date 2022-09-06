@@ -23,16 +23,14 @@ def home():
     headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
     }
-
     r = requests.get("https://thedarkestblog.com/", headers=headers)
     c = r.content
     soup = BeautifulSoup(r.content, "html.parser")
     a=[]
     for each_div in soup.findAll('h1',{'class':'entry-title'}):
-
-        a.append(each_div)
-    json_format = json.dumps(a)
-    return render_template('index.html')
+        a.append(each_div.text) 
+    print(a)
+    return(headers)
     #soup = BeautifulSoup(page.content, "html.parser")
     # # #print(soup)
     # # # Return the response in json format
