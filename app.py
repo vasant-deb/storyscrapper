@@ -4,7 +4,7 @@ import requests
 app = Flask(__name__)
 
 
-@app.route('/getmsg/', methods=['GET'])
+@app.route('/', methods=['GET'])
 def respond():
     
     URL = "https://realpython.github.io/fake-jobs/"
