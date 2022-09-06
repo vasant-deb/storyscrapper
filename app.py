@@ -22,7 +22,7 @@ def home():
     URL = "https://www.creepypasta.com/"
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
-    new = soup.find(class_="pt-cv-title").get_text()
+    new = soup.find(class_="pt-cv-title")
 
     return jsonify({
             "data": new,
