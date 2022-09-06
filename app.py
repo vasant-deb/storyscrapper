@@ -19,7 +19,7 @@ def respond():
     soup = BeautifulSoup(page.content, "html.parser")
     #print(soup)
     # Return the response in json format
-    return jsonify(page)
+    return page
 
 
 @app.route('/post/', methods=['POST'])
