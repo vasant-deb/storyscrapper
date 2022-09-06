@@ -17,7 +17,7 @@ def respond():
   
     #print(soup)
     # Return the response in json format
-    print URL
+    print(URL)
     
 @app.route('/check', methods=['GET'])
 def respond():
@@ -27,7 +27,7 @@ def respond():
     soup = BeautifulSoup(page.content, "html.parser")
     #print(soup)
     # Return the response in json format
-    print page
+    print(page)
 
 
 @app.route('/post/', methods=['POST'])
