@@ -1,12 +1,10 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 
 from flask import jsonify
 
 import requests
 from bs4 import BeautifulSoup
 import sys
-
-
 
 app = Flask(__name__)
 
