@@ -25,11 +25,8 @@ def home():
     title = soup.find(['title']).get_text()
 
 
-    return jsonify({
-            "data": soup,
-            # Add this option to distinct the POST request
-            "METHOD": "POST"
-        })
+    return soup
+          
     #soup = BeautifulSoup(page.content, "html.parser")
     # # #print(soup)
     # # # Return the response in json format
