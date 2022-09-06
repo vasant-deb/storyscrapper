@@ -32,11 +32,7 @@ def home():
         a.append(each_div) 
 
 
-    return jsonify({
-            "data": a,
-            # Add this option to distinct the POST request
-            "METHOD": "POST"
-        })
+    return a
     #soup = BeautifulSoup(page.content, "html.parser")
     # # #print(soup)
     # # # Return the response in json format
