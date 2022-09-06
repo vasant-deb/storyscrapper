@@ -1,9 +1,9 @@
 from flask import Flask, render_template, request
 
-from flask import jsonify
+#from flask import jsonify
 
-import requests
-from bs4 import BeautifulSoup
+#import requests
+#from bs4 import BeautifulSoup
 
 
 
@@ -19,15 +19,15 @@ def respond():
     # Return the response in json format
     print(URL)
     
-@app.route('/check', methods=['GET'])
-def respond():
+# @app.route('/check', methods=['GET'])
+# def respond():
     
-    URL = "https://realpython.github.io/fake-jobs/"
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
-    #print(soup)
-    # Return the response in json format
-    print(page)
+    # URL = "https://realpython.github.io/fake-jobs/"
+    # page = requests.get(URL)
+    # soup = BeautifulSoup(page.content, "html.parser")
+    # #print(soup)
+    # # Return the response in json format
+    # print(page)
 
 
 @app.route('/post/', methods=['POST'])
