@@ -8,7 +8,7 @@ app = Flask(__name__)
 def respond():
     
     URL = "https://realpython.github.io/fake-jobs/"
-    page = request.get(URL)
+    page = request.args.get(URL)
 
     print(page.text)
 
