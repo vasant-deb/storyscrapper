@@ -21,8 +21,9 @@ def respond():
 def home():
     URL = "https://thedarkestblog.com/"
     page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
-    new = soup.find(class_="entry-title").get_text()
+    soup = BeautifulSoup(page.text, "html.parser")
+    title = soup.find(['title']).get_text()
+
 
     return jsonify({
             "data": soup,
