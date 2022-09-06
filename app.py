@@ -1,5 +1,22 @@
-from flask import Flask, request, jsonify
+from flask import Flask, render_template, request
+
+from flask import jsonify
+
+
+import requests
 from bs4 import BeautifulSoup
+
+from flask_mysqldb import MySQL
+
+from urllib.request import urlopen
+  
+# import json
+import json
+# store the URL in url as 
+# parameter for urlopen
+import datetime
+import random 
+
 
 
 app = Flask(__name__)
@@ -9,9 +26,9 @@ app = Flask(__name__)
 def respond():
     
     URL = "https://realpython.github.io/fake-jobs/"
-    page = request.args.get(URL)
+    page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
-    print(soup)
+    #print(soup)
     # Return the response in json format
     return jsonify(page)
 
