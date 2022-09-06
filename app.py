@@ -22,10 +22,11 @@ def home():
     URL = "https://www.creepypasta.com/"
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
-    new = soup.find(class_="_self")
+    new = soup.find(class_="pt-cv-title").get_text()
 
     return jsonify({
             "data": new,
+            "page":page,
             # Add this option to distinct the POST request
             "METHOD": "POST"
         })
