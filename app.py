@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-import requests
+
 
 app = Flask(__name__)
 
@@ -8,7 +8,7 @@ app = Flask(__name__)
 def respond():
     
     URL = "https://realpython.github.io/fake-jobs/"
-    page = requests.get(URL)
+    page = request.get(URL)
 
     print(page.text)
 
