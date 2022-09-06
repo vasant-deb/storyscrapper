@@ -19,14 +19,24 @@ def respond():
     
 @app.route('/check', methods=['GET'])
 def home():
-    URL = "https://thedarkestblog.com/"
-    page = requests.get(URL)
-    soup = BeautifulSoup(page.text, "html.parser")
-    title = soup.find(['title']).get_text()
+    headers = {
+    'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
+    }
+
+    r = requests.get("https://thedarkestblog.com/", headers=headers)
+    c = r.content
+    soup = BeautifulSoup(r.content, "html.parser")
+    a=[]
+    for each_div in soup.findAll('h1',{'class':'entry-title'}):
+
+        a.append(each_div) 
 
 
-    return soup
-          
+    return jsonify({
+            "data": a,
+            # Add this option to distinct the POST request
+            "METHOD": "POST"
+        })
     #soup = BeautifulSoup(page.content, "html.parser")
     # # #print(soup)
     # # # Return the response in json format
