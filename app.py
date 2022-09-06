@@ -43,18 +43,20 @@ def home():
     r = requests.get("https://thedarkestblog.com/", headers=headers)
     c = r.content
     soup = BeautifulSoup(r.content, "html.parser")
-    data=[]
+    datas=[]
     for each_div in soup.findAll('h1',{'class':'entry-title'}):
-        data.append({"title":each_div.text}) 
+        datas.append({"title":each_div.text}) 
         for link in each_div.findAll('a'):
             slugs=link.get('href')
-            data.append({"slug":slugs}) 
+            datas.append({"slug":slugs}) 
             rnew = requests.get(slugs, headers=headers)
             soup1 = BeautifulSoup(rnew.content, "html.parser")
             gdp_table = soup1.find("div", attrs={"class": "entry-content"})
-            data.append({"desc":gdp_table})
+            datas.append({"desc":gdp_table})
             
-    print(data)        
+    urlx = 'https://beta.autoreport.space/storyapi/public/createapi'
+    headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
+    r = requests.post(urlx, data=datas, headers=headers)       
     return('none')
    
 @app.route('/post/', methods=['POST'])
