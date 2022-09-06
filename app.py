@@ -17,7 +17,7 @@ def respond():
   
     #print(soup)
     # Return the response in json format
-    print(URL)
+    return(URL)
     
 # @app.route('/check', methods=['GET'])
 # def respond():
