@@ -10,8 +10,6 @@ def respond():
     URL = "https://realpython.github.io/fake-jobs/"
     page = request.args.get(URL)
 
-    print(page.text)
-
     # Return the response in json format
     return jsonify(page.text)
 
