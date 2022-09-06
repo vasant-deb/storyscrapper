@@ -30,7 +30,7 @@ def home():
     for each_div in soup.findAll('h1',{'class':'entry-title'}):
         a.append(each_div.text) 
     print(a)
-    return(headers)
+    return(a)
     #soup = BeautifulSoup(page.content, "html.parser")
     # # #print(soup)
     # # # Return the response in json format
