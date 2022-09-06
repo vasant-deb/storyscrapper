@@ -19,14 +19,13 @@ def respond():
     
 @app.route('/check', methods=['GET'])
 def home():
-    URL = "https://www.creepypasta.com/"
+    URL = "https://realpython.github.io/fake-jobs/"
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
-    #new = soup.find(class_="pt-cv-title")
+    new = soup.find(class_="title").get_text()
 
     return jsonify({
-            "data": '',
-            "page":soup,
+            "data": new,
             # Add this option to distinct the POST request
             "METHOD": "POST"
         })
