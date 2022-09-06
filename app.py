@@ -15,6 +15,7 @@ app.config['MYSQL_HOST'] = '103.102.234.70'
 app.config['MYSQL_USER'] = 'nkbsatak_speakup'
 app.config['MYSQL_PASSWORD'] = 'n#sVjOTTw(oR'
 app.config['MYSQL_DB'] = 'nkbsatak_speakup'
+mysql = MySQL(app)
 
 @app.route('/', methods=['GET'])
 def respond():
