@@ -1,11 +1,12 @@
 from flask import Flask, request, jsonify
+import requests
+
 app = Flask(__name__)
 
 
 @app.route('/getmsg/', methods=['GET'])
 def respond():
-    import requests
-
+    
     URL = "https://realpython.github.io/fake-jobs/"
     page = requests.get(URL)
 
