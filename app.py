@@ -20,7 +20,7 @@ def respond():
     return(URL)
     
 @app.route('/check', methods=['GET'])
-def respond():
+def home():
     URL = "https://realpython.github.io/fake-jobs/"
     page = requests.get(URL)
     
