@@ -19,15 +19,15 @@ def respond():
     # Return the response in json format
     return(URL)
     
-# @app.route('/check', methods=['GET'])
-# def respond():
-    
-    # URL = "https://realpython.github.io/fake-jobs/"
-    # page = requests.get(URL)
-    # soup = BeautifulSoup(page.content, "html.parser")
-    # #print(soup)
-    # # Return the response in json format
-    # print(page)
+@app.route('/check', methods=['GET'])
+def respond():
+    URL = "https://realpython.github.io/fake-jobs/"
+    page = requests.get(URL)
+    soup = BeautifulSoup(page.content, "html.parser")
+    # # #print(soup)
+    # # # Return the response in json format
+    # # print(page)
+    return(soup)
 
 
 @app.route('/post/', methods=['POST'])
