@@ -57,7 +57,7 @@ def home():
     urlx = 'https://beta.autoreport.space/storyapi/public/createapi'
     headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
     r = requests.post(urlx, data=datas, headers=headers)       
-    return('none')
+    return(r)
    
 @app.route('/post/', methods=['POST'])
 def post_something():
