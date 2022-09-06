@@ -36,6 +36,8 @@ def home():
             soup1 = BeautifulSoup(rnew.content, "html.parser")
             gdp_table = soup1.find("div", attrs={"class": "entry-content"})
             data.append({"desc":gdp_table})
+            
+    print(data)        
     return('none')
    
 @app.route('/post/', methods=['POST'])
