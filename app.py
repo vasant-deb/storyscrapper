@@ -28,7 +28,7 @@ def home():
     soup = BeautifulSoup(r.content, "html.parser")
     a=[]
     for each_div in soup.findAll('h1',{'class':'entry-title'}):
-        a.append(each_div.text) 
+        a.append(each_div.text.replace(" ", "-").lower()) 
     print(a)
     return(a)
     #soup = BeautifulSoup(page.content, "html.parser")
