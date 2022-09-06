@@ -22,9 +22,10 @@ def home():
     URL = "https://realpython.github.io/fake-jobs/"
     page = requests.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
-    new = soup.find_all('h2', class_='title')
+    new = soup.find(class_="title").get_text()
+
     return jsonify({
-            "data": "{new}",
+            "data": new,
             # Add this option to distinct the POST request
             "METHOD": "POST"
         })
