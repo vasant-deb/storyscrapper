@@ -25,7 +25,16 @@ def respond():
     #print(soup)
     # Return the response in json format
     return(URL)
+ 
+@app.route('/rs')
+def someName():
+    cur = mysql.connection.cursor()
+    sql = "SELECT * FROM users"
+    cur.execute(sql)
+    results = cursor.fetchall()
+    return(results)
     
+ 
 @app.route('/check', methods=['GET'])
 def home():
     headers = {
