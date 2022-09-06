@@ -23,11 +23,12 @@ def respond():
 def respond():
     URL = "https://realpython.github.io/fake-jobs/"
     page = requests.get(URL)
-    soup = BeautifulSoup(page.content, "html.parser")
+    
+    #soup = BeautifulSoup(page.content, "html.parser")
     # # #print(soup)
     # # # Return the response in json format
     # # print(page)
-    return(soup)
+    return(page)
 
 
 @app.route('/post/', methods=['POST'])
