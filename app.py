@@ -11,7 +11,7 @@ def respond():
     page = request.args.get(URL)
 
     # Return the response in json format
-    return jsonify(page.text)
+    return jsonify(page)
 
 
 @app.route('/post/', methods=['POST'])
