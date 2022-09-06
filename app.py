@@ -1,4 +1,4 @@
-from flask import Flask, request,requests, jsonify
+from flask import Flask, request, jsonify
 from bs4 import BeautifulSoup
 
 
@@ -9,7 +9,7 @@ app = Flask(__name__)
 def respond():
     
     URL = "https://realpython.github.io/fake-jobs/"
-    page = requests.get(URL)
+    page = request.args.get(URL)
     soup = BeautifulSoup(page.content, "html.parser")
     print(soup)
     # Return the response in json format
