@@ -4,19 +4,11 @@ from flask import jsonify
 
 import requests
 from bs4 import BeautifulSoup
-import sys
-import json
 
-from flask_mysqldb import MySQL
+import json
  
 app = Flask(__name__)
  
-app.config['MYSQL_HOST'] = '103.102.234.70'
-app.config['MYSQL_USER'] = 'nkbsatak_speakup'
-app.config['MYSQL_PASSWORD'] = 'n#sVjOTTw(oR'
-app.config['MYSQL_DB'] = 'nkbsatak_speakup'
-mysql = MySQL(app)
-
 @app.route('/', methods=['GET'])
 def respond():
     
@@ -43,22 +35,31 @@ def home():
     r = requests.get("https://thedarkestblog.com/", headers=headers)
     soup = BeautifulSoup(r.content, "html.parser")
     datas=[]
+    image=''
+# images = soup.findAll('img',{'class':'wp-post-image'})
+# for img in images:
+    # if img.has_attr('src'):
+       # image=img['src']
 
-    images = soup.findAll('img')
-    for img in images:
-        if img.has_attr('src'):
-            print(img['src'])
-
-    for each_div in soup.findAll('h1',{'class':'entry-title'}):
-        for link in each_div.findAll('a'): 
-            slugs=link.get('href')
+    for each_div in soup.findAll('article',{'class':'type-post'}):
+        for title in each_div.findAll('h1',{'class':'entry-title'}): 
+            titlex=title.text
             
-            rnew = requests.get(slugs, headers=headers)
-            soup1 = BeautifulSoup(rnew.content, "html.parser")
-            gdp_table = soup1.find("div", attrs={"class": "entry-content"})
             
-            datas.append([{"image":img['src'],"name": each_div.text,"slug": slugs,'desc':gdp_table.get_text()}])
+            for link in title.findAll('a'): 
+                slugs=link.get('href')        
+                
+        
+        for image in each_div.findAll('img',{'class':'wp-post-image'}): 
+            imagex=image['src']
             
+        rnew = requests.get(slugs, headers=headers)
+        soup1 = BeautifulSoup(rnew.content, "html.parser")
+        gdp_table = soup1.find("div", attrs={"class": "entry-content"})
+            
+        datas.append([{"image":imagex,"name": titlex,"slug": slugs,'desc':gdp_table.get_text()}])
+        
+       
     urlx = 'https://beta.autoreport.space/storyapi/public/createapi'
     json_string = json.dumps(datas)
 
@@ -66,7 +67,6 @@ def home():
     headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
     response = requests.post(urlx, data=json_string, headers=headers) 
     r_json=response.json()  
-    
     return(r_json)
    
 @app.route('/post/', methods=['POST'])
