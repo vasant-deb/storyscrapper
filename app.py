@@ -41,23 +41,33 @@ def home():
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
     }
     r = requests.get("https://thedarkestblog.com/", headers=headers)
-    c = r.content
     soup = BeautifulSoup(r.content, "html.parser")
     datas=[]
+
+    images = soup.findAll('img')
+    for img in images:
+        if img.has_attr('src'):
+            print(img['src'])
+
     for each_div in soup.findAll('h1',{'class':'entry-title'}):
-        datas.append({"title":each_div.text}) 
-        for link in each_div.findAll('a'):
+        for link in each_div.findAll('a'): 
             slugs=link.get('href')
-            datas.append({"slug":slugs}) 
+            
             rnew = requests.get(slugs, headers=headers)
             soup1 = BeautifulSoup(rnew.content, "html.parser")
             gdp_table = soup1.find("div", attrs={"class": "entry-content"})
-            datas.append({"desc":gdp_table})
+            
+            datas.append([{"image":img['src'],"name": each_div.text,"slug": slugs,'desc':gdp_table.get_text()}])
             
     urlx = 'https://beta.autoreport.space/storyapi/public/createapi'
+    json_string = json.dumps(datas)
+
+
     headers = {'content-type': 'application/json', 'Accept-Charset': 'UTF-8'}
-    r = requests.post(urlx, data=datas, headers=headers)      
+    response = requests.post(urlx, data=json_string, headers=headers) 
+    r_json=response.json()  
     
+    return(r_json)
    
 @app.route('/post/', methods=['POST'])
 def post_something():
