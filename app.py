@@ -32,7 +32,7 @@ def home():
     headers = {
     'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.12; rv:55.0) Gecko/20100101 Firefox/55.0',
     }
-    r = requests.get("https://thedarkestblog.com/", headers=headers)
+    r = requests.get("https://thedarkestblog.com/page/2/", headers=headers)
     soup = BeautifulSoup(r.content, "html.parser")
     datas=[]
     image=''
